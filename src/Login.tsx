@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 
-function Login() {
+interface LoginProps {
+    onLoginSuccess: () => void;  // 声明这个 prop 的类型
+}
+
+function Login({ onLoginSuccess }: LoginProps) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
 
     const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault(); // 阻止表单刷新页面
+        alert('登录成功！');
+        onLoginSuccess();  // 调用父组件传进来的函数，告诉父组件登录成功了
+     /*   e.preventDefault(); // 阻止表单刷新页面
         try{
             // 发请求到后端
             const res = await fetch('http://localhost:5000/api/login', {
@@ -31,7 +37,7 @@ function Login() {
         catch (err){
             console.log(err);
             alert("Something wrong happen")
-        }
+        }*/
 
     };
 
